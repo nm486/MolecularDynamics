@@ -22,7 +22,7 @@ int main(int argc, char *argv[]){
 
   /*  number of timesteps to use. */
   int Nstep=100;
-  int Nsave=5;
+  int Nsave=2;
   
   if( argc > 1 ){
     Nstep=atoi(argv[1]);
@@ -98,17 +98,17 @@ int main(int argc, char *argv[]){
 
 double second()
 {
-/* struct timeval { long        tv_sec; 
+/* struct timeval { long tv_sec; 
             long        tv_usec;        };
 
 struct timezone { int   tz_minuteswest;
              int        tz_dsttime;      };     */
 
-        struct timeval tp;
-        struct timezone tzp;
-        int i;
+  struct timeval tp;
+  struct timezone tzp;
+  int i;
 
-        i = gettimeofday(&tp,&tzp);
-        return ( (double) tp.tv_sec + (double) tp.tv_usec * 1.e-6 );
+  i = gettimeofday(&tp,&tzp);
+  return ( (double) tp.tv_sec + (double) tp.tv_usec * 1.e-6 );
 }
 

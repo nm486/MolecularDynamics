@@ -19,3 +19,9 @@
 
 # Data input files
 *.dat
+
+# Text files
+*.txt
+
+# SGE output files
+*.o.*

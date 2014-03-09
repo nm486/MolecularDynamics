@@ -25,10 +25,6 @@ void add_norm(int N,double *r, double *delta);
 double force(double W, double delta, double r);
 void wind_force(int N,double *f[Ndim], double *visc, double *pos[Ndim], double P[Ndim]);
 
-
-
-
-
 void evolve(int count,double dt){
   int step;
   int i,j,k,l;
@@ -37,7 +33,7 @@ void evolve(int count,double dt){
    * Loop over timesteps.
    */
   for(step = 1;step<=count;step++){
-    printf("timestep %d\n",step);
+    printf("Timestep %d\n",step);
     printf("collisions %d\n",collisions);
 
     /* set the viscosity term in the force calculation */
@@ -61,8 +57,8 @@ void evolve(int count,double dt){
     }
     
     /* calculate central force */
-    for(i=0;i<Nbody;i++){
-      for(l=0;l<Ndim;l++){
+    for(l=0;l<Ndim;l++){
+      for(i=0;i<Nbody;i++){
         f[l][i] = f[l][i] - 
            force(G*mass[i]*M_central,pos[l][i],r[i]);
       } 
@@ -117,15 +113,15 @@ void evolve(int count,double dt){
     }
 
     /* update positions */
-    for(i=0;i<Nbody;i++){
-      for(j=0;j<Ndim;j++){
+    for(j=0;j<Ndim;j++){
+      for(i=0;i<Nbody;i++){
         pos[j][i] = pos[j][i] + dt * vel[j][i];
       }
     }
 
     /* update velocities */
-    for(i=0;i<Nbody;i++){
-      for(j=0;j<Ndim;j++){
+    for(j=0;j<Ndim;j++) {
+      for(i=0;i<Nbody;i++){
         vel[j][i] = vel[j][i] + dt * (f[j][i]/mass[i]);
       }
     }
